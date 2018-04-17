@@ -12,25 +12,31 @@ const guardarDB = () => {
 const cargarDB = () => {
 
     try {
-        listadoPorHacer = require('../db/data');
+        listadoPorHacer = require('../db/data')
     } catch (error) {
-        listadoPorHacer = [];
+        listadoPorHacer = []
     }
 }
 
 const crear = (descripcion) => {
-    cargarDB();
+    cargarDB()
     let porHacer = {
         descripcion,
         completado: false
     }
     listadoPorHacer.push(porHacer)
 
-    guardarDB();
+    guardarDB()
 
     return porHacer
 }
 
+const getListado = () => {
+    cargarDB();
+    return listadoPorHacer;
+}
+
 module.exports = {
-    crear
+    crear,
+    getListado
 }
