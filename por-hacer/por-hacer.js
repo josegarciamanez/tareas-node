@@ -32,11 +32,25 @@ const crear = (descripcion) => {
 }
 
 const getListado = () => {
-    cargarDB();
-    return listadoPorHacer;
+    cargarDB()
+    return listadoPorHacer
+}
+
+const actualizar = (descripcion, completado = true) => {
+    cargarDB()
+    let index = listadoPorHacer.findIndex(tarea => tarea.descripcion === descripcion)
+
+    if (index >= 0) {
+        listadoPorHacer[index].completado = completado
+        guardarDB()
+        return true
+    } else {
+        return false
+    }
 }
 
 module.exports = {
     crear,
-    getListado
+    getListado,
+    actualizar
 }
